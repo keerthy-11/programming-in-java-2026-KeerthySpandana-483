@@ -1,0 +1,39 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String username = "student";
+        String password = "1234";
+        System.out.println("===== COLLEGE STUDENT PORTAL =====");
+        System.out.print("Enter Username: ");
+        String u = sc.nextLine();
+        System.out.print("Enter Password: ");
+        String p = sc.nextLine();
+        if (u.equals(username) && p.equals(password)) {
+            System.out.println("\nLogin Successful!");
+            System.out.println("\n===== STUDENT PROFILE =====");
+            System.out.println("Welcome " + u);
+            System.out.println("Name: Tejaswini");
+            System.out.println("Roll Number: 101");
+            System.out.println("Department: CSE");
+            System.out.println("Semester: 3");
+            System.out.println("\n===== ATTENDANCE =====");
+            System.out.println("Attendance: 85%");
+            System.out.println("\n===== SUBJECT MARKS =====");
+            System.out.println("Java: 90");
+            System.out.println("Data Structures: 85");
+            System.out.println("Mathematics: 80");
+            System.out.println("Computer Networks: 88");
+            System.out.println("\nLogout Successful!");
+            System.out.println("Session Terminated.");
+        } else {
+            System.out.println("\nInvalid Username or Password!");
+            System.out.println("Name: Keerthy");
+            System.out.println("Roll Number: 101");
+            System.out.println("Department: CSE");
+            System.out.println("Semester: 3");
+            System.out.println("Please Try Again.");
+        }
+        sc.close();
+    }
+}
