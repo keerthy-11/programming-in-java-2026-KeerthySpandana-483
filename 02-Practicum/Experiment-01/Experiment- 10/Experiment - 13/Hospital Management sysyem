@@ -1,0 +1,113 @@
+import java.util.*;
+class Patient {
+    int id, age;
+    String name, gender, disease, contact;
+    Patient(int id, String name, int age,
+            String gender, String disease, String contact) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.disease = disease;
+        this.contact = contact;
+    }
+    void display() {
+        System.out.println("\nPatient ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Gender: " + gender);
+        System.out.println("Disease: " + disease);
+        System.out.println("Contact: " + contact);
+    }
+}
+public class Main {
+    static ArrayList<Patient> patients = new ArrayList<>();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("\n===== HOSPITAL MANAGEMENT SYSTEM =====");
+            System.out.println("1. Insert Patient Record");
+            System.out.println("2. Update Patient Record");
+            System.out.println("3. Delete Patient Record");
+            System.out.println("4. Display Patient Records");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Patient ID: ");
+                    int id = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Patient Name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Enter Age: ");
+                    int age = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Enter Gender: ");
+                    String gender = sc.nextLine();
+                    System.out.print("Enter Disease: ");
+                    String disease = sc.nextLine();
+                    System.out.print("Enter Contact Number: ");
+                    String contact = sc.nextLine();
+                    patients.add(new Patient(id, name, age,
+                            gender, disease, contact));
+                    System.out.println("Patient record inserted successfully.");
+                    break;
+                case 2:
+                    System.out.print("Enter Patient ID to update: ");
+                    int updateId = sc.nextInt();
+                    sc.nextLine();
+                    boolean updated = false;
+                    for (Patient p : patients) {
+                        if (p.id == updateId) {
+                            System.out.print("Enter New Name: ");
+                            p.name = sc.nextLine();
+                            System.out.print("Enter New Age: ");
+                            p.age = sc.nextInt();
+                            sc.nextLine();
+                            System.out.print("Enter New Gender: ");
+                            p.gender = sc.nextLine();
+                            System.out.print("Enter New Disease: ");
+                            p.disease = sc.nextLine();
+                            System.out.print("Enter New Contact: ");
+                            p.contact = sc.nextLine();
+                            updated = true;
+                            System.out.println("Patient record updated successfully.");
+                            break;
+                        }
+                    }
+                    if (!updated)
+                        System.out.println("Patient record not found.");
+                    break;
+                case 3:
+                    System.out.print("Enter Patient ID to delete: ");
+                    int deleteId = sc.nextInt();
+                    boolean deleted = patients.removeIf(
+                            p -> p.id == deleteId);
+                    if (deleted)
+                        System.out.println("Patient record deleted successfully.");
+                    else
+                        System.out.println("Patient record not found.");
+                    break;
+                case 4:
+                    if (patients.isEmpty()) {
+                        System.out.println("No patient records found.");
+                    } else {
+                        for (Patient p : patients) {
+                            p.display();
+                        }
+                    }
+                    break;
+                case 5:
+                    System.out.println("Exiting Hospital Management System.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please select a valid option.");
+            }
+        } while (choice != 5);
+        sc.close();
+    }
+}
