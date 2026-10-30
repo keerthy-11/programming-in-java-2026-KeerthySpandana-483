@@ -1,0 +1,92 @@
+import java.util.Scanner;
+class ShoppingServlet {
+    void init() {
+        System.out.println("Servlet Initialized Successfully.");
+    }
+    void login(String username, String password) {
+        if (username.equals("student") &&
+            password.equals("1234")) {
+
+            System.out.println("Login Successful.");
+        } else {
+            System.out.println("Invalid Username or Password.");
+        }
+    }
+    void searchProduct(String product) {
+        System.out.println("\nSearching Product...");
+        if (product.equalsIgnoreCase("Laptop")) {
+            System.out.println("Product Found!");
+            System.out.println("Product: Laptop");
+            System.out.println("Price: Rs. 50000");
+        } else if (product.equalsIgnoreCase("Mobile")) {
+            System.out.println("Product Found!");
+            System.out.println("Product: Mobile");
+            System.out.println("Price: Rs. 20000");
+        } else {
+            System.out.println("Product not found.");
+        }
+    }
+    void placeOrder(String customer, String product, int quantity) {
+        System.out.println("\nProcessing Order...");
+        if (quantity > 0) {
+            System.out.println("Customer: " + customer);
+            System.out.println("Product: " + product);
+            System.out.println("Quantity: " + quantity);
+            System.out.println("Order placed successfully.");
+        } else {
+            System.out.println("Invalid Quantity.");
+        }
+    }
+    void destroy() {
+        System.out.println("\nServlet Destroyed Successfully.");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ShoppingServlet servlet = new ShoppingServlet();
+        servlet.init();
+        int choice;
+        do {
+            System.out.println("\n===== ONLINE SHOPPING WEBSITE =====");
+            System.out.println("1. Customer Login");
+            System.out.println("2. Product Search");
+            System.out.println("3. Order Placement");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Username: ");
+                    String username = sc.nextLine();
+                    System.out.print("Enter Password: ");
+                    String password = sc.nextLine();
+                    servlet.login(username, password);
+                    break;
+                case 2:
+                    System.out.print("Enter Product Name: ");
+                    String product = sc.nextLine();
+                    servlet.searchProduct(product);
+                    break;
+                case 3:
+                    System.out.print("Enter Customer Name: ");
+                    String customer = sc.nextLine();
+                    System.out.print("Enter Product Name: ");
+                    String item = sc.nextLine();
+                    System.out.print("Enter Quantity: ");
+                    int quantity = sc.nextInt();
+                    sc.nextLine();
+                    servlet.placeOrder(customer, item, quantity);
+                    break;
+                case 4:
+                    servlet.destroy();
+                    System.out.println("Application Stopped.");
+                    break;
+                default:
+                    System.out.println("Invalid Choice.");
+            }
+        } while (choice != 4);
+        sc.close();
+    }
+}
